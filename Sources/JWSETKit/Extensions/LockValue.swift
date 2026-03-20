@@ -6,6 +6,9 @@
 //
 
 import Collections
+#if canImport(OrderedCollections)
+import OrderedCollections
+#endif
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #if canImport(Darwin)
@@ -633,7 +636,9 @@ public protocol DictionaryInitialzable: ExpressibleByDictionaryLiteral {
 }
 
 extension Dictionary: DictionaryInitialzable {}
+#if canImport(OrderedCollections)
 extension OrderedDictionary: DictionaryInitialzable {}
+#endif
 
 extension LockedValue: ExpressibleByDictionaryLiteral where Value: ExpressibleByDictionaryLiteral & DictionaryInitialzable, Value.Key: Hashable {
     @inlinable
