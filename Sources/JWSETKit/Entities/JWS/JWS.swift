@@ -143,7 +143,7 @@ public struct JSONWebSignature<Payload: ProtectedWebContainer>: Hashable, Sendab
         for signatureHeader in signatures {
             let message = signatureHeader.signedData(payload)
             var algorithm = JSONWebSignatureAlgorithm(signatureHeader.protected.algorithm)
-            if !strict, algorithm == .none, let unprotected = signatureHeader.unprotected {
+            if !strict, algorithm == nil || algorithm == .none, let unprotected = signatureHeader.unprotected {
                 algorithm = JSONWebSignatureAlgorithm(unprotected.algorithm)
             }
             if let algorithm, let key = keySet.matches(for: signatureHeader.protected.value).first as? any JSONWebValidatingKey {
