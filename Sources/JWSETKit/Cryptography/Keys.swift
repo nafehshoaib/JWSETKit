@@ -62,7 +62,7 @@ public protocol JSONWebKey: JSONWebContainer, Expirable {
     func thumbprintUri<H>(format: JSONWebKeyFormat, using hashFunction: H.Type) throws -> String where H: HashFunction
 }
 
-private func isEqualKey(_ lhs: (any JSONWebKey)?, _ rhs: (any JSONWebKey)?) -> Bool {
+func isEqualKey(_ lhs: (any JSONWebKey)?, _ rhs: (any JSONWebKey)?) -> Bool {
     guard let lhsThumbprint = try? lhs?.thumbprint(format: .jwk, using: SHA256.self),
           let rhsThumbprint = try? rhs?.thumbprint(format: .jwk, using: SHA256.self)
     else {
@@ -267,7 +267,7 @@ public protocol JSONWebPrivateKey<PublicKey>: JSONWebKey {
 
 extension JSONWebPrivateKey where Self: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.publicKey == rhs.publicKey
+        isEqualKey(lhs.publicKey, rhs.publicKey)
     }
 }
  

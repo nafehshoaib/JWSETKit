@@ -184,7 +184,7 @@ extension JSONWebKeySymmetric {
     }
     
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.keyValue == rhs.keyValue
+        lhs.keyValue?.data == rhs.keyValue?.data
     }
     
     public func hash(into hasher: inout Hasher) {

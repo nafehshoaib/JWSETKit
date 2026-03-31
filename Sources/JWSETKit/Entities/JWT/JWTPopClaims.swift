@@ -18,7 +18,26 @@ import CommonCrypto
 /// Presenter possesses a particular key and that the recipient can cryptographically
 /// confirm that the presenter has possession of that key as described in
 /// [RFC 7800](https://www.rfc-editor.org/rfc/rfc7800.html ).
-public enum JSONWebTokenConfirmation: Codable, Hashable, Sendable {
+public enum JSONWebTokenConfirmation: Codable, Equatable, Hashable, Sendable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        switch (lhs, rhs) {
+        case (.key(let a), .key(let b)):
+            isEqualKey(a, b)
+        case (.encryptedKey(let a), .encryptedKey(let b)):
+            a == b
+        case (.url(let urlA, let kidA), .url(let urlB, let kidB)):
+            urlA == urlB && kidA == kidB
+        case (.keyId(let a), .keyId(let b)):
+            a == b
+        case (.keyThumbprint(let a), .keyThumbprint(let b)):
+            a == b
+        case (.certificateThumbprint(let a), .certificateThumbprint(let b)):
+            a == b
+        default:
+            false
+        }
+    }
+    
     /// A JWK representing the confirmation key.
     case key(_ key: AnyJSONWebKey)
     
