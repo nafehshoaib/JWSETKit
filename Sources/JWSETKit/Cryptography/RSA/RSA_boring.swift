@@ -5,7 +5,7 @@
 //  Created by Amir Abbas Mousavian on 6/20/25.
 //
 
-#if canImport(CryptoExtras)
+#if canImport(CCrypto​Boring​SSL)
 import Crypto
 import CryptoExtras
 #if canImport(FoundationEssentials)
