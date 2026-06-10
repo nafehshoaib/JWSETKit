@@ -6,6 +6,7 @@
 //
 
 #if canImport(CryptoExtras)
+#if canImport(CCrypto​Boring​SSL)
 import Crypto
 import CryptoExtras
 #if canImport(FoundationEssentials)
@@ -690,4 +691,5 @@ extension ArbitraryPrecisionInteger.BackingStorage {
         try body(&_backing)
     }
 }
+#endif
 #endif
