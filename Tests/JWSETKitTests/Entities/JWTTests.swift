@@ -8,7 +8,7 @@
 import Foundation
 import Testing
 @testable import JWSETKit
-#if canImport(NIOHTTP1)
+#if HTTP
 import NIOHTTP1
 #endif
 
@@ -62,7 +62,7 @@ struct JWTTests {
     }
 #endif
     
-#if canImport(NIOHTTP1)
+#if HTTP
     @Test
     func authorizationNIOHTTP1() throws {
         let jwt = try JSONWebToken(from: jwtString)
@@ -73,7 +73,7 @@ struct JWTTests {
     }
 #endif
     
-#if canImport(Foundation.NSURLSession) || canImport(FoundationNetworking) || canImport(AsyncHTTPClient)
+#if canImport(Foundation.NSURLSession) || canImport(FoundationNetworking) || HTTP
     @Test(.disabled())
     func jwkSetFetch() async throws {
         let keySet = try await JSONWebKeySet(provider: .apple)

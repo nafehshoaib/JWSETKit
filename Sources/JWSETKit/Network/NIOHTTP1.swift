@@ -12,7 +12,7 @@ import Foundation
 #endif
 import Crypto
 
-#if canImport(NIOHTTP1)
+#if HTTP
 import NIOHTTP1
 
 extension HTTPHeaders {
@@ -73,7 +73,7 @@ extension HTTPHeaders {
 }
 #endif
 
-#if canImport(AsyncHTTPClient)
+#if HTTP
 import AsyncHTTPClient
 
 enum HTTPClientFetch: HTTPFetch {

@@ -28,7 +28,7 @@ enum NoHTTPFetch: HTTPFetch {
 var httpClient: any HTTPFetch.Type {
 #if canImport(Foundation.NSURLSession) || canImport(FoundationNetworking)
     return URLSessionHTTPFetch.self
-#elseif canImport(AsyncHTTPClient)
+#elseif HTTP
     return HTTPClientFetch.self
 #else
     return NoHTTPFetch.self
