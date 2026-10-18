@@ -12,7 +12,7 @@ import Foundation
 #endif
 import Crypto
 
-#if canImport(Foundation.NSURLSession) || canImport(FoundationNetworking) || canImport(AsyncHTTPClient)
+#if canImport(Foundation.NSURLSession) || canImport(FoundationNetworking) || HTTP
 /// Predefined JWKS providers for major identity platforms.
 public struct JSONWebKeySetProvider: Hashable, Sendable {
     /// The URL of the JWKS endpoint.
